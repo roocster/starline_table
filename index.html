@@ -1,0 +1,3665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Starline alarms</title>
+
+	<!-- Latest compiled and minified Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		body {
+			display: table;
+			position: relative;
+		}
+		table {
+			font-size: 10pt;
+		}
+		table td.success {
+			color: #3c763d;
+		}
+		table td.danger {
+			color: #a94442;
+		}
+		table td.warning {
+			color: #8a6d3b;
+		}
+		.container-fluid {
+			padding: 15px;
+		}
+		.container-fluid::before,
+		.container-fluid::after {
+			position: fixed;
+			background-color: white;
+			z-index: 11;
+			display: block;
+			top: 0;
+			left: 0;
+		}
+		.container-fluid::before {
+			right: 0;
+			height: 15px;
+		}
+		.container-fluid::after {
+			bottom: 0;
+			width: 15px;
+		}
+		#alarms-table {
+			margin-bottom: 0;
+		}
+		.whitefix div {
+			display: block;
+			background: #ddd;
+			position: fixed;
+			left: 15px;
+			top: 15px;
+			z-index: 11;
+		}
+		.whitefix-top div {
+			height: 1px;
+			right: 0;
+		}
+		.whitefix-left div {
+			width: 1px;
+			bottom: 0;
+		}
+		.whitefix::before {
+			content: ' ';
+			display: block;
+			background: white;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			z-index: 12;
+		}
+		.whitefix-left::before {
+			top: 0;
+			width: 15px;
+		}
+		.whitefix-top::before {
+			left: 0;
+			height: 15px;
+		}
+		#alarms-table thead td {
+			border-bottom: none;
+		}
+		#alarms-table thead tr:nth-child(2) td {
+			border-top: none;
+		}
+		#alarms-table td {
+			max-width: 150px;
+		}
+		#alarms-table img.product {
+			width: 100px;
+		}
+		#alarms-table img.icon {
+			border-radius: 25px;
+			float: left;
+			height: 50px;
+		}
+		#alarms-table .group-1 img.icon {
+			background-color: #a2c516;
+		}
+		#alarms-table .group-2 img.icon {
+			background-color: #159eda;
+		}
+		#alarms-table tbody td {
+			vertical-align: middle;
+		}
+		#alarms-table thead tr:first-child td:first-child,
+		#alarms-table tbody tr td:first-child,
+		#alarms-table thead tr:nth-child(3) td:first-child {
+			max-width: none;
+			min-width: 210px;
+			position: relative;
+			background-color: white;
+			z-index: 10;
+		}
+		#alarms-table thead tr:first-child td:first-child {
+			z-index: 13;
+		}
+		#alarms-table thead tr:nth-child(3) td:first-child {
+			z-index: 9;
+		}
+		#alarms-table tbody tr th:first-child span {
+			position: relative;
+		}
+		#alarms-table h5.attribute {
+			height: 50px;
+			display: table-cell;
+			vertical-align: middle;
+			line-height: 14px;
+			width: 150px;
+		}
+		#alarms-table .group-3 h5.attribute,
+		#alarms-table .group-4 h5.attribute {
+			width: 200px;
+		}
+		#alarms-table small.description {
+			font-size: 10px;
+			display: block;
+			clear: both;
+			text-align: left;
+			line-height: 12px;
+			padding-top: 10px;
+		}
+		#alarms-table thead tr:nth-child(1) td,
+		#alarms-table thead tr:nth-child(2) td {
+			position: relative;
+			background-color: white;
+			z-index: 10;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<table id="alarms-table" class="table table-bordered table-condensed text-center">
+			<thead>
+				<tr>
+					<td rowspan="2"></td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/05c/190_112_1/05c0f36e25d600a0c1217cc2ceaf79b2.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/feb/190_112_1/feb8cfc4d621f60d0823f612da4b9807.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/0fa/190_112_1/M96.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/772/190_112_1/77235d8a322af7be84bc9e0d1d031daf.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/a25/190_112_1/a25e9e86466d4edef7a54393cee92b87.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/385/190_112_1/385ea4b8cad89f0c71c70c4bb3cd1b02.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/dc0/190_112_1/A95_1.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/ccb/190_112_1/A95_1.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/51a/190_112_1/51a569e05ea21744906720d7bf73a0d4.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/eb7/190_112_1/eb74fa6366dae93bdb86b2bcd3e24d6d.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/8be/190_112_1/8be90bb82946ed1a31984b371d28629c.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/bad/190_112_1/A96-new.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/1e5/190_112_1/A96-new.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/57c/190_112_1/A96-new.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/596/190_112_1/596b126e927e2f5fe2cc9899980ff6f5.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/255/190_112_1/A93_1.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/5a9/190_112_1/A93_eco.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/fc7/190_112_1/fc75c6cb7942ffb92bf454cba7b3a5f8.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/d71/190_112_1/b83a1589ad94d7eeb146df60543a9a47.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/4aa/190_112_1/4aa5de7a12681a80a21b1d0269d68b82.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/8f5/190_112_1/A93_1.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/9a0/190_112_1/А93-2.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/8ec/190_112_1/8ecb31abccb7ec8c25ab5973be4d50b7.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/da0/190_112_1/А93-2.png">
+					</td>
+					<td class="text"><img class="product" src="https://store.starline.ru/upload/resize_cache/iblock/b82/190_112_1/А93-2.png">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_x96_m/">StarLine X96 M</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_m96_l/">StarLine M96 L</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_m96_sl/">StarLine M96 SL</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_m96_m/">StarLine M96 M</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_d95_can_lin_gsm_gps/">StarLine D95 BT CAN+LIN GSM GPS</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_b95_can_lin_gsm_gps/">StarLine B95 BT CAN+LIN GSM GPS</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a95/">StarLine A95 BT CAN+LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a95_gsm/">StarLine A95 BT CAN+LIN GSM</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e95_bt_2can_lin_gsm/">StarLine E95 ВТ 2CAN+LIN GSM</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e95_bt_2can_lin/">StarLine E95 ВТ 2CAN+LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e65_bt_2can_lin/">StarLine E65 ВТ 2CAN+LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a96_gsmgps/">StarLine A96 2CAN+2LIN GSM GPS</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a96/">StarLine A96 2CAN+2LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a66/">StarLine A66 2CAN+2LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93_2can_lin/">StarLine A93 2CAN+2LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93_gsm/">StarLine A93 GSM</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93_2can_lin_gsm/">StarLine A93 2CAN+2LIN GSM ECO SLAVE</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e93/">StarLine E93</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e93_2canlin/">StarLine E93 2CAN+2LIN</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_e63/">StarLine E63</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93/">StarLine A93</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93_a/">StarLine A93</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a93_eco/">StarLine A93 ECO</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a63/">StarLine A63</a></h5>
+					</td>
+					<td>
+						<h5><a target="_blank" href="https://store.starline.ru/catalog/avtosignalizatsii/starline_a63_eco/">StarLine A63 ECO</a></h5>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>24700 ₽</td>
+					<td>27100 ₽</td>
+					<td>21600 ₽</td>
+					<td>26700 ₽</td>
+					<td>26700 ₽</td>
+					<td>15350 ₽</td>
+					<td>19500 ₽</td>
+					<td>19500 ₽</td>
+					<td>15400 ₽</td>
+					<td>13500 ₽</td>
+					<td>26700 ₽</td>
+					<td>15550 ₽</td>
+					<td>13500 ₽</td>
+					<td>10000 ₽</td>
+					<td>13200 ₽</td>
+					<td></td>
+					<td>9500 ₽</td>
+					<td>11350 ₽</td>
+					<td>7750 ₽</td>
+					<td>8850 ₽</td>
+					<td></td>
+					<td>7700 ₽</td>
+					<td>6950 ₽</td>
+					<td>5800 ₽</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="active" colspan="26"><span>Надежная защита</span>
+					</th>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/295/2958a903650234559f6b9ece9e402ea8.png">
+						<h5 class="attribute">3D датчик удара и наклона</h5>
+						<small class="description">Интегрированный цифровой датчик удара и наклона с дистанционной настройкой регистрирует поддомкрачивание и эвакуацию транспортного средства</small>
+					</td>
+					<td class="success">Умный 3D контроль (дополнительно оценивает безопасность вождения)</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">Умный 3D контроль (дополнительно оценивает безопасность вождения)</td>
+					<td class="success">Умный 3D контроль (дополнительно оценивает безопасность вождения)</td>
+					<td class="success">Умный 3D контроль (дополнительно оценивает безопасность вождения)</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/1b4/1b4105873d0bb6c6d36c40236f2d8937.png">
+						<h5 class="attribute">Расширенный диапазон температур</h5>
+						<small class="description">StarLine уверенно работает в суровых климатических условиях при температуре от минус 50 до плюс 85 °С благодаря высококачественным комплектующим</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/f77/f7747cd76a33e490b8c8d3768e8ba409.png">
+						<h5 class="attribute">Рекордная энергоэкономичность</h5>
+						<small class="description">StarLine гарантирует сохранность достаточного заряда аккумулятора автомобиля в режиме охраны благодаря использованию запатентованных технологий и программных решений</small>
+					</td>
+					<td class="success">до 150 дней</td>
+					<td class="success">до 150 дней</td>
+					<td class="success">до 150 дней</td>
+					<td class="success">до 150 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 130 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+					<td class="success">до 60 дней</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/667/66764551b094fc9e5e22dc902465e653.png">
+						<h5 class="attribute">Защита от радиопомех</h5>
+						<small class="description">StarLine уверенно работает в условиях экстремальных городских радиопомех</small>
+					</td>
+					<td class="success">Узкополосный трансивер с малошумящим усилителем</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Трансивер с шумоподобным сигналом</td>
+					<td class="success">Узкополосный трансивер с малошумящим усилителем</td>
+					<td class="success">Узкополосный трансивер с малошумящим усилителем</td>
+					<td class="success">Узкополосный трансивер с малошумящим усилителем</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+					<td class="success">128-канальный трансивер</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/5ff/5ff3acdbd9429458b9562fde267b7595.png">
+						<h5 class="attribute">Диалоговая защита</h5>
+						<small class="description">Диалоговый код управления StarLine c индивидуальными ключами шифрования гарантирует надежную защиту от всех известных кодграбберов</small>
+					</td>
+					<td class="success">Умный диалог</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">256 бит</td>
+					<td class="success">Умный диалог</td>
+					<td class="success">Умный диалог</td>
+					<td class="success">Умный диалог</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+					<td class="success">128 бит</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/090/090e73911a03047bde9b5bcbec9e87ef.png">
+						<h5 class="attribute">Умная авторизация по Bluetooth Smart</h5>
+						<small class="description">Разрешение поездки происходит только после авторизации владельца на основе Bluetooth Smart технологии. *Список смартфонов, поддерживающих данную функцию, смотрите на www.starline.ru</small>
+					</td>
+					<td class="success">Персональная метка / смартфон</td>
+					<td class="success">Миниатюрная влагозащищенная радиометка / смартфон</td>
+					<td class="success">Миниатюрная влагозащищенная радиометка / смартфон</td>
+					<td class="success">Миниатюрная влагозащищенная радиометка / смартфон</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">Смартфон с мобильным приложением StarLine</td>
+					<td class="success">Смартфон с мобильным приложением StarLine</td>
+					<td class="success">Смартфон с мобильным приложением StarLine</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/c04/c042ee80f0ca2b232981ddccf86c7860.png">
+						<h5 class="attribute">Умная блокировка двигателя</h5>
+						<small class="description">StarLine гарантирует надежную защиту от угона и разбойного захвата благодаря безопаcной блокировке двигателя по нажатию на педаль тормоза или снижению скорости до заданного значения</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/795/79566af5125e02307cd0a65a400605a5.png">
+						<h5 class="attribute">Умное аварийное питание</h5>
+						<small class="description">Встроенный аккумулятор позволяет кратковременно регистрировать параметры ДТП транспортного средства даже при аварийном разрушении аккумулятора автомобиля</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/d52/d523bbe63a292ce861661d150bd384d5.png">
+						<h5 class="attribute">Авторизация по PIN-коду</h5>
+						<small class="description">Дополнительная авторизация надежно защищает автомобиль от угона, усиливая охранные функции штатной сигнализации. Поездка возможна только после ввода индивидуального PIN-кода при помощи штатных кнопок автомобиля</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/199/1992126c8bb07f032d9676d028f757b6.png">
+						<h5 class="attribute">Невидимая блокировка</h5>
+						<small class="description">iCAN гарантирует надежную защиту благодаря уникальной запатентованной технологии скрытой блокировки двигателя по штатным цифровым шинам автомобиля</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при интеграции 2CAN+2LIN интерфейса</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/1b9/1b9b93882f14c35c2c1b48491fead78a.png">
+						<h5 class="attribute">Контроль канала связи</h5>
+						<small class="description">Автоматический контроль канала связи обеспечивает проверку нахождения брелка в зоне действия приемопередатчика охранного оборудования</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-1">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/c9f/c9f3dd4e40fbb5dee46dc2c1f14da7c5.png">
+						<h5 class="attribute">SUPER SLAVE</h5>
+						<small class="description">Управление охраной автомобиля штатным брелком с надежной дополнительной авторизацией</small>
+					</td>
+					<td class="success">Авторизация по метке или смартфону</td>
+					<td class="success">Авторизация по метке или смартфону</td>
+					<td class="success">Авторизация по метке или смартфону</td>
+					<td class="success">Авторизация по метке или смартфону</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков (при подключении по цифровым шинам или аналоговым цепям)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков</td>
+					<td class="success">Авторизация по осн. брелку</td>
+					<td class="success">Авторизация по осн. брелку</td>
+					<td class="success">Авторизация по осн. брелку</td>
+					<td class="success">Диалоговая авторизация доп. брелком</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="success">Диалоговая авторизация доп. брелком</td>
+					<td class="warning">Диалоговая авторизация любым из двух брелков (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="success">Диалоговая авторизация любым из двух брелков</td>
+					<td class="warning">Диалоговая авторизация любым из двух брелков (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+					<td class="warning">Диалоговая авторизация доп. брелком (доступна при интеграции 2CAN+2LIN)</td>
+				</tr>
+				<tr>
+					<th class="active" colspan="26"><span>Удобный сервис</span>
+					</th>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/800/2can2lin_white.png">
+						<h5 class="attribute">2CAN+2LIN</h5>
+						<small class="description">Обеспечивает бережную установку и минимальное вмешательство в электронику автомобиля. Постоянно обновляемая библиотека 2CAN+2LIN протоколов содержит самый полный список автомобилей 2010-2016 гг., продающихся на территории России и стран Содружества</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/500/5007ca2f374f9bda86d1c0f8d7b6881c.png">
+						<h5 class="attribute">CAN+LIN</h5>
+						<small class="description">CAN+LIN интерфейс обеспечивает быструю, удобную и безопасную установку охранного оборудования StarLine на современные автомобили, оснащенные шинами CAN, LIN, такие, как: Lada Kalina, Lada Kalina II, Lada Priora и Lada Granta</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/f57/f57c779e269ecdd09103f3b48ac9c7af.png">
+						<h5 class="attribute">Индивидуальные настройки</h5>
+						<small class="description">Гибкая логика StarLine сделает ваш автомобиль еще умнее. Реализуйте сервисные функции, о которых вы давно мечтали. Наслаждайтесь комфортом, а StarLine позаботится о безопасности</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/3af/3af08a43fcc19a5cdaf7330da66422c5.png">
+						<h5 class="attribute">Интерфейс 2CAN</h5>
+						<small class="description">2CAN-интерфейс обеспечивает быструю, удобную и безопасную установку охранного оборудования StarLine на современные автомобили, оснащенные несколькими цифровыми шинами CAN</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/dcd/dcde79bc6c5ba7f71f03eb043103c7d0.png">
+						<h5 class="attribute">Интерфейсы 2CAN и LIN</h5>
+						<small class="description">Одновременное подключение модуля к цифровым шинам CAN, LIN, K-Line, RX/TX сокращает время установки и обеспечивает минимальное вмешательство в электронику автомобиля</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/68b/68b21cc23ddd311c1a4518f02620b512.png">
+						<h5 class="attribute">Экономия на КАСКО</h5>
+						<small class="description">Умное оборудование StarLine оценивает стиль вождения и пробег вашего автомобиля. Водите аккуратно — экономьте на КАСКО</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/8da/8da8fe4f7a13552d4224d9f40345d735.png">
+						<h5 class="attribute">Бесплатный мониторинг</h5>
+						<small class="description">С помощью простого и удобного мониторинга starline.online вы сможете с точностью до нескольких метров узнать местонахождение своего транспортного средства</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении StarLine GPS-ГЛОНАСС-Мастер</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении StarLine GPS-ГЛОНАСС-Мастер</td>
+					<td class="warning">Опция доступна при подключении StarLine GPS-ГЛОНАСС-Мастер</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+					<td class="warning">Опция доступна при подключении GPS-ГЛОНАСС-Мастер и наличии опционального GSM-интерфейса</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/e40/e4008edcacab002c2df7d03064052d62.png">
+						<h5 class="attribute">Гибкие сервисные каналы</h5>
+						<small class="description">Программируемые параметры управления аварийной световой сигнализацией, складыванием зеркал, настройкой сидений под владельца и многое другое</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/c26/c26a10f861349714fb3652825fc2e9b4.png">
+						<h5 class="attribute">Два GSM-оператора на связи</h5>
+						<small class="description">2 GSM-канала, 2 GSM-оператора, автоматическое переключение 2 SIM-карт обеспечивают надежную GSM-связь и постоянный контроль транспортного средства, даже в случае потери сигнала одного из сотовых операторов. А также экономит ваши средства при путешествии заграницу</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/3f9/3f9fc83ee02e1cfa0a7545145c09963c.png">
+						<h5 class="attribute">Федеральная служба поддержки</h5>
+						<small class="description">Россия 8-800-333-80-30Белоруссия 8-10-8000-333-80-30Казахстан 8-800-070-80-30Украина 0-800-502-308</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/2e5/2e51bd26e784f5b3a892f0ac5a506d8a.png">
+						<h5 class="attribute">Телематика</h5>
+						<small class="description">GSM-GPRS, GPS-ГЛОНАСС телематические интерфейсы позволяют дистанционно управлять охраной вашего автомобиля и осуществлять мониторинг</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/dec/dec4bab774c6457f0b987d3adda429a9.png">
+						<h5 class="attribute">Ударопрочный брелок</h5>
+						<small class="description">Брелок StarLine имеет инновационную, ударопрочную конструкцию, эргономичный дизайн и внутреннюю защищенную антенну</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/4dd/4dd81e01fc05f8545e761b9894b55194.png">
+						<h5 class="attribute">Управление с телефона</h5>
+						<small class="description">GSM-интерфейс позволяет управлять охранными и сервисными функциями, получать оповещения о статусе охраны на ваш мобильный телефон</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/aae/aaef93d2cedc7588e4774b08e4022245.png">
+						<h5 class="attribute">Управление с телефона</h5>
+						<small class="description">Bluetooth Smart гарантирует надежное управление охранными и сервисными функциями автомобиля с вашего смартфона, даже при отсутствии GSM*Список смартфонов, поддерживающих данную функцию, смотрите на www.starline.ru</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">Дополнительно авторизация с телефона (Для смартфонов iOS и Android с функцией Bluetooth версии 4.0 и выше)</td>
+					<td class="success">Дополнительно авторизация с телефона (Для смартфонов iOS и Android с функцией Bluetooth версии 4.0 и выше)</td>
+					<td class="success">Дополнительно авторизация с телефона</td>
+					<td class="success">Дополнительно авторизация с телефона</td>
+					<td class="success">Дополнительно авторизация с телефона (Для смартфонов iOS и Android с функцией Bluetooth версии 4.0 и выше)</td>
+					<td class="success">Дополнительно авторизация с телефона (Для смартфонов iOS и Android с функцией Bluetooth версии 4.0 и выше)</td>
+					<td class="success">Дополнительно авторизация с телефона (Для смартфонов iOS и Android с функцией Bluetooth версии 4.0 и выше)</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/c39/c3917fbba663bebee81e955e0282e907.png">
+						<h5 class="attribute">Умная диагностика</h5>
+						<small class="description">Экономьте на диагностике транспортного средства — получайте оповещения о состоянии автомобиля на мобильный телефон</small>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/96d/96d8b7d3a8b8e0237ee689a4358e1889.png">
+						<h5 class="attribute">Умный бесключевой обход</h5>
+						<small class="description">StarLine iKey позволяет реализовать бесключевой обход штатного иммобилайзера и запуск двигателя по цифровым шинам CAN или LIN**Список автомобилей, поддерживающих данную функцию, смотрите на can.starline.ru</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="warning">Опция доступна при подключении 2CAN+LIN интерфейса</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+					<td class="warning">Опция доступна при подключении 2CAN+2LIN интерфейса</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/23c/23cfbb4b179985ed430c57723a5affda.png">
+						<h5 class="attribute">Наглядный интерфейс </h5>
+						<small class="description">С помощью бесплатного интуитивно понятного мобильного приложения StarLine вы можете убедиться в сохранности автомобиля, посмотреть историю перемещений и многое другое</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/bc8/bc8b2572ae4a266bdffad078b58457bc.png">
+						<h5 class="attribute">Автозапуск</h5>
+						<small class="description">Модуль запуска позволяет осуществлять дистанционный и автоматический запуск двигателя</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">Запуск по температуре; в заданное время</td>
+					<td class="success">Запуск по температуре; в заданное время</td>
+					<td class="success">Запуск по температуре; в заданное время</td>
+					<td class="success">Запуск по температуре; в заданное время</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="warning">Запуск по температуре; в заданное время; периодически (опция доступна при подключении модуля автозапуска)</td>
+					<td class="success">Запуск по температуре; в заданное время; по просадке АКБ; дням недели</td>
+					<td class="success">Запуск по температуре; в заданное время; по просадке АКБ; дням недели</td>
+					<td class="warning">Запуск по температуре; в заданное время; по просадке АКБ; дням недели (опция доступна при подключении модуля автозапуска)</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="warning">Запуск по температуре; в заданное время; периодически (опция доступна при подключении модуля автозапуска)</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="success">Запуск по температуре; в заданное время; периодически</td>
+					<td class="warning">Запуск по температуре; в заданное время; периодически (опция доступна при подключении модуля автозапуска)</td>
+					<td class="warning">Запуск по температуре; в заданное время; периодически (опция доступна при подключении модуля автозапуска)</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/266/266214f7ae0db3bd4f32627281a35b43.png">
+						<h5 class="attribute">Аудиоконтроль</h5>
+						<small class="description">Внешний микрофон позволяет прослушивать салон автомобиля</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-2">
+					<td>
+						<img class="icon" src="https://store.starline.ru/upload/iblock/e63/e63023a6cb046446d64ead2e32c05b30.png">
+						<h5 class="attribute">Обновление программного обеспечения по воздуху</h5>
+						<small class="description">Простое и быстрое обновление программного обеспечения StarLine по каналу GSM-GPRS</small>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr>
+					<th class="active" colspan="26"><span>Комплектация</span>
+					</th>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">2CAN+2LIN модуль</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">CAN+LIN-модуль</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Реле управления замком капота и блокировки двигателя R4</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Реле R4</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Сирена S-20.3</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Сервисная кнопка со светодиодом</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Брелок без обратной связи</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">2 шт.</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Дополнительный брелок</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Цифровое радиореле блокировки двигателя R5</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Антенна GPS-ГЛОНАСС</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Микрофон</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Модуль для обхода штатного иммобилизатора</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">BP-06</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success">BP-05</td>
+					<td class="success">BP-06</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Модуль запуска двигателя</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Метка Bluetooth (2 шт.)</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">Основной брелок</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">GSM-модуль</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">StarLine EC-1 (2 шт.)</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-3">
+					<td>
+						<h5 class="attribute">StarLine R6 с датчиком температуры</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr>
+					<th class="active" colspan="26"><span>Экономия</span>
+					</th>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">РЕСО</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">РОСГОССТРАХ</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">Ингосстрах</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">ЭРГО РУСЬ</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">СОГЛАСИЕ</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">Страховая компания ВСК</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">Британский страховой дом</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">ВТБ</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">АЛЬФАСТРАХОВАНИЕ</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">МАКС</h5>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">Мегарусс-Д</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+				<tr class="group-4">
+					<td>
+						<h5 class="attribute">INTOUCH</h5>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+					<td class="danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="whitefix whitefix-left">
+			<div></div>
+		</div>
+		<div class="whitefix whitefix-top">
+			<div></div>
+		</div>
+
+
+	</div>
+
+	<!-- jQuery 3.2.0 CDN  -->
+	<script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var attributes = $('#alarms-table tbody tr td:first-child, #alarms-table tbody tr th:first-child span, #alarms-table thead tr:nth-child(3) td:first-child');
+		var products = $('#alarms-table thead tr:nth-child(1) td, #alarms-table thead tr:nth-child(2) td');
+		var corner = $('#alarms-table thead tr:first-child td:first-child');
+
+		$(window).scroll(function() {
+			attributes.css('left', $(window).scrollLeft() + 'px');
+			products.css('top', $(window).scrollTop() + 'px');
+			corner.css({
+				left: $(window).scrollLeft() + 'px',
+				top: $(window).scrollTop() + 'px'
+			});
+		});
+	</script>
+</body>
+
+</html>
